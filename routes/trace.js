@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var XRay = require('aws-xray-sdk');
+var XRay = require('aws-xray-sdk');
 // var _http = require('http');
 // var http = XRay.captureHTTPs(_http);
 
