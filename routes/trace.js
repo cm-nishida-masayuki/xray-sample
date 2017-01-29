@@ -6,7 +6,13 @@ http = XRay.captureHTTPs(http);
 
 router.get('/', function (req, res, next) {
     http.get("http://13.112.92.206", function (result) {
-        res.status(200).end();
+        result.on('data', function (data) {
+
+        });
+
+        result.on('end', function () {
+            res.status(200).end();
+        });
     });
 });
 
