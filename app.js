@@ -37,7 +37,7 @@ app.use(XRay.express.openSegment('express1'));
 app.use('/', index);
 app.use('/users', users);
 app.use('/healthcheck', healthcheck);
-app.use('/trace', trace);
+app.use('/sample', trace);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
