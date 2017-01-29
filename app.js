@@ -17,6 +17,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var healthcheck = require('./routes/users');
+var trace = require('./routes/trace');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(XRay.express.openSegment('express1'));
 app.use('/', index);
 app.use('/users', users);
 app.use('/healthcheck', healthcheck);
+app.use('/trace', trace);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
