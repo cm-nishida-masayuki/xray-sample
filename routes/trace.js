@@ -6,7 +6,7 @@ var http = XRay.captureHTTPs(_http);
 
 router.get('/', function (req, res, next) {
     http.get("http://13.112.33.52", function (result) {
-        res.status(200);
+        res.status(200).end();
     });
 });
 

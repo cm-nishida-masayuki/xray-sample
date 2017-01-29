@@ -16,7 +16,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var healthcheck = require('./routes/users');
+var healthcheck = require('./routes/healthcheck');
 var trace = require('./routes/trace');
 
 var app = express();
