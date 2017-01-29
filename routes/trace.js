@@ -5,9 +5,9 @@ var _http = require('http');
 var http = XRay.captureHTTPs(_http);
 
 router.get('/', function (req, res, next) {
-    http.get("http://13.112.33.52", function (result) {
+    // http.get("http://13.112.33.52", function (result) {
         res.status(200).end();
-    });
+    // });
 });
 
 module.exports = router;
