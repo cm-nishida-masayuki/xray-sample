@@ -1,3 +1,10 @@
+var AWS = require('aws-sdk');
+var XRay = require('aws-xray-sdk');
+
+XRay.config(XRay.plugins.EC2);
+XRay.setDefaultName("xray-node-sample");
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -21,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(XRay.express.openSegment);
 
 app.use('/', index);
 app.use('/users', users);
@@ -42,5 +50,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(XRay.express.closeSegment);
 
 module.exports = app;
