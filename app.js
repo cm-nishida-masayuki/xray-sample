@@ -1,8 +1,10 @@
 var AWS = require('aws-sdk');
 var XRay = require('aws-xray-sdk');
+var http = require('http');
 
-XRay.config(XRay.plugins.EC2);
-XRay.setDefaultName("xray-node-sample");
+XRay.config([XRay.plugins.EC2]);
+http = XRay.captureHTTPs(http);
+XRay.middleware.setDefaultName("xray-node-sample");
 
 
 var express = require('express');
@@ -28,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(XRay.express.openSegment);
+app.use(XRay.express.openSegment('express1'));
 
 app.use('/', index);
 app.use('/users', users);
@@ -51,6 +53,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(XRay.express.closeSegment);
+app.use(XRay.express.closeSegment());
 
 module.exports = app;
